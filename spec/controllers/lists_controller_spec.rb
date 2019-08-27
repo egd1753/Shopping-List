@@ -67,12 +67,60 @@ RSpec.describe ListsController, type: :controller do
       expect(response).to redirect_to List.last
     end
   end
-#
-#  describe "GET #edit" do
-#    it "returns http success" do
-#      get :edit
-#      expect(response).to have_http_status(:success)
-#    end
-#  end
+
+
+  describe "GET #edit" do
+    it "returns http success" do
+      get :edit, params: { id: my_list.id }
+      expect(response).to have_http_status(:success)
+    end
+
+    it "renders the #edit view" do
+      get :edit, params: { id: my_list.id }
+      expect(response).to render_template :edit
+    end
+
+    it "assigns list to be updated to @list" do
+      get :edit, params: { id: my_list.id }
+      list_instance = assigns(:list)
+      expect(list_instance.id).to eq my_list.id
+      expect(list_instance.title).to eq my_list.title
+      expect(list_instance.body).to eq my_list.body
+    end
+  end
+
+
+  describe "PUT #update" do
+    it "updates list with expected attributes" do
+      new_title = "New List Title"
+      new_body = "New list body"
+      put :update, params: { id: my_list.id, list: { title: new_title, body: new_body } }
+      updated_list = assigns(:list)
+      expect(updated_list.id).to eq my_list.id
+      expect(updated_list.title).to eq new_title
+      expect(updated_list.body).to eq new_body
+    end
+
+    it "redirects to the updated list" do
+      new_title = "New List Title"
+      new_body = "New list body"
+      put :update, params: { id: my_list.id, list: { title: new_title, body: new_body } }
+      expect(response).to redirect_to my_list
+    end
+  end
+
+
+  describe "DELETE #destroy" do
+    it "deletes the list" do
+      delete :destroy, params: { id: my_list.id }
+      count = List.where({id: my_list.id}).size
+      expect(count).to eq 0
+    end
+
+    it "redirects to lists index" do
+      delete :destroy, params: { id: my_list.id }
+      expect(response).to redirect_to lists_path
+    end
+  end
 
 end

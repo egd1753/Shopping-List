@@ -32,14 +32,35 @@ class ListsController < ApplicationController
 
 
   def edit
+    @list = List.find(params[:id])
   end
 
 
   def update
+    @list = List.find(params[:id])
+    @list.title = params[:list][:title]
+    @list.body = params[:list][:body]
+
+    if @list.save
+      flash[:notice] = "List was updated"
+      redirect_to @list
+    else
+      flash.now[:alert] = "There was an error saving list. Try again."
+      render :edit
+    end
   end
 
 
-  def delete
+  def destroy
+    @list = List.find(params[:id])
+
+    if @list.destroy
+      flash[:notice] = "'#{@list.title}' was successfully deleted."
+      redirect_to lists_path
+    else
+      flash.now[:alert] = "There was an error deleting this list."
+      render :index
+    end
   end
 
 end
