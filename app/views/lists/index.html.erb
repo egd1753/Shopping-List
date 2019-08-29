@@ -1,11 +1,24 @@
 <h1>All Lists</h1>
 
-<% @lists.each do |list| %>
-   <div class="media">
-     <div class="media-body">
-       <h4 class="media-heading">
-         <%= link_to list.title, list %>
-       </h4>
-     </div>
-   </div>
-<% end %>
+<div class="row">
+
+  <div class="col-md-8">
+    <% @lists.each do |list| %>
+       <div class="media">
+         <div class="media-body">
+           <h4 class="media-heading">
+             <%= link_to list.title, list %>
+           </h4>
+           <small>
+             <%= list.body %>
+           </small>
+         </div>
+       </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-4">
+    <%= link_to "New List", new_list_path, class: 'btn btn-success' %>
+  </div>
+
+</div>

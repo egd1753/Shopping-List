@@ -1,2 +1,43 @@
-<h1>Lists#edit</h1>
-<p>Find me in app/views/lists/edit.html.erb</p>
+ <h1>Edit List</h1>
+
+ <div class="row">
+
+   <div class="col-md-4">
+     <p>Updating your list, made easy!</p>
+     <ul>
+       <li>Enter a new list title, or leave as is</li>
+       <li>Enter a new description in the "body", or leave as is</li>
+       <li>Click "Update" to save changes, or "Cancel" to go back</li>
+       <li>Click "Delete" if you wish to delete this list</li>
+     </ul>
+   </div>
+
+   <div class="col-md-8">
+     <%= form_for @list do |f| %>
+       <div class="form-group">
+         <%= f.label :title %>
+         <%= f.text_field :title, class: 'form-control', placeholder: "Enter list title" %>
+       </div>
+
+       <div class="form-group">
+         <%= f.label :body %>
+         <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter list description" %>
+       </div>
+
+       <div class="form-group">
+         <%= f.submit "Update", class: 'btn btn-success' %>
+       </div>
+
+       <div class="form-group">
+         <%= link_to "Delete", @list, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this list?'} %>
+       </div>
+
+       <div class="form-group">
+         <%= link_to "Cancel", @list, class: 'btn btn-warning' %>
+       </div>
+     <% end %>
+
+
+   </div>
+
+ </div>
