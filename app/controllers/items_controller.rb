@@ -3,8 +3,10 @@ class ItemsController < ApplicationController
   def create
     @list = List.find(params[:list_id])
     item = @list.items.new(item_params)
+    item.purchased = false
+    item.save!
 
-    if item.save
+    if item.save!
       flash[:notice] = "Item saved successfully"
       redirect_to [@list]
     else

@@ -1,8 +1,14 @@
  <div class="media">
    <div class="media-body">
-     <p><%= item.body %></p>
-     <button>
-       <%= link_to "Remove", [@list, item], method: :delete %>
-     </button>
+
+     <div class="custom-control custom-checkbox">
+       <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+       <label class="custom-control-label" for="defaultUnchecked"><p><%= item.body %></p></label>
+
+
+        <%= link_to "Remove", [@list, item], method: :delete, class: "btn btn-warning btn-sm" %>
+
+     </div>
+
    </div>
  </div>
