@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the take-home assignment for Bloc's certification portion of the web development course. The problem presented was that I must build a real-time shopping/grocery list application. I chose to do this project using Ruby on Rails (I have roughly three months of experience with it and haven't previously used any other full-stack frameworks), and to deploy to Heroku. The application follows RESTful architecture and Test Driven Development.
 
-Things you may want to cover:
+I chose Rspec for testing, both for my familiarity with it and its wide support and adoption in the Rails community. I used Bootstrap as my CSS framework for similar reasons. I also decided to incorporate the Devise gem, as it offers robust functionality right out of the box for building user resources. I also used Devise for my user sign-up confirmation mailers, along with Sendgrid and Figaro (to store Sendgrid credentials in ENV variables).
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Instead of deploying to Heroku, I considered deploying to Elastic Beanstalk from AWS. EBS offers amazing scalability, yet is also easier to learn and get started, however, I felt given the short time span and small initial user base, Heroku would work fine for an initial release. There are a few bugs with this project: currently there is a "purchased" attribute on the Item model, but the checkboxes in the views aren't properly communicating and toggling this boolean value. Additionally, the Items #update action is passing tests fine, but it isn't a usable action yet in the views of items. This project is also in need of further testing and validations, and obviously a more outlined and appealing visual design wouldn't hurt. If I had more time I would also have liked to add React on the frontend for quicker performance.
